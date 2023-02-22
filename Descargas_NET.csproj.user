@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Forms\frmInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmMessag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Descarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_DescargaResumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_EligeConf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Incidencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_LecturaSimple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_ListDescargas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frm_Wait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
