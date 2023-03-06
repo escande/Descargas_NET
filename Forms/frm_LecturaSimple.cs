@@ -88,6 +88,7 @@ namespace Descargas_NET.Forms
 
                         case 'S':
                         case 'M':
+                        case 'A':
                             material.TrazabilidadMaterialesSSerial = e.Lectura[1..];
                             break;
 
@@ -95,7 +96,6 @@ namespace Descargas_NET.Forms
                             material.TrazabilidadMaterialesQCantidad = int.Parse(e.Lectura[1..]);
                             break;
 
-                        case 'A':
                         case 'N':
                             material.TrazabilidadMaterialesNAlbaran = e.Lectura[1..];
                             break;

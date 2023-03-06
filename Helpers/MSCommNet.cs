@@ -256,7 +256,7 @@ namespace Descargas_NET.Helpers
                 switch (z.Substring(0, 1))
                 {
                     case "A":
-                        lOdette.Campo_A = z[1..];
+                        lOdette.Campo_S = z[1..];
                         break;
 
                     case "P":
