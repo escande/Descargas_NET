@@ -79,7 +79,7 @@ namespace Descargas_NET.Forms
             this.btnAceptarSi.Text = "Aceptar";
             this.btnAceptarSi.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptarSi.UseVisualStyleBackColor = false;
-            this.btnAceptarSi.Click += new System.EventHandler(this.btnAceptarSi_Click);
+            this.btnAceptarSi.Click += new System.EventHandler(this.BtnAceptarSi_Click);
             // 
             // btnCancelarNo
             // 
@@ -171,7 +171,7 @@ namespace Descargas_NET.Forms
             this.dgv.RowTemplate.ReadOnly = true;
             this.dgv.Size = new System.Drawing.Size(275, 298);
             this.dgv.TabIndex = 49;
-            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_CellClick);
             // 
             // ElPuesto
             // 
@@ -222,8 +222,8 @@ namespace Descargas_NET.Forms
             this.MaximizeBox = false;
             this.Name = "frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Login_FormClosing);
-            this.Load += new System.EventHandler(this.frm_Login_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Login_FormClosing);
+            this.Load += new System.EventHandler(this.Frm_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

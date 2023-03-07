@@ -19,14 +19,14 @@ namespace Descargas_NET.Forms
         private readonly IRepositorio _repositorio;
         private readonly IHubClient hub;
         private readonly int _idMuelle;
-        private readonly frm_Principal _parent;
+        private readonly FrmPrincDescargas _parent;
         private List<Descarga> _descargas;
         private const string _endPoint = "api/descargas";
         private bool _enCarga = false;
         private bool _enArranque = true;
-        private Log _log;
+        private readonly Log _log;
 
-        public frm_ListDescargas(int IdMuelle, frm_Principal parent)
+        public frm_ListDescargas(int IdMuelle, FrmPrincDescargas parent)
         {
             InitializeComponent();
 
@@ -38,7 +38,7 @@ namespace Descargas_NET.Forms
             this._parent = parent;
         }
 
-        private async void frm_ListDescargas_Load(object sender, EventArgs e)
+        private async void Frm_ListDescargas_Load(object sender, EventArgs e)
         {
             this.Top = 0;
             this.Left = -5;
@@ -154,14 +154,14 @@ namespace Descargas_NET.Forms
             lbMatricula.Text = "";
         }
 
-        private void btExit_Click(object sender, EventArgs e)
+        private void BtExit_Click(object sender, EventArgs e)
         {
             hub.Hub_DataReceive -= Connection_DataReceive;
             this.Close();
             _parent.Show();
         }
 
-        private void btDescargar_Click(object sender, EventArgs e)
+        private void BtDescargar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -179,7 +179,7 @@ namespace Descargas_NET.Forms
             catch { }//Me la pela si se produce un error de indice de row o cell
         }
 
-        private void frm_ListDescargas_VisibleChanged(object sender, EventArgs e)
+        private void Frm_ListDescargas_VisibleChanged(object sender, EventArgs e)
         {
             if (!_enArranque && this.Visible)
             {
@@ -190,7 +190,7 @@ namespace Descargas_NET.Forms
             if (_enArranque) _enArranque = false;
         }
 
-        private async void timer1_Tick(object sender, EventArgs e)
+        private async void Timer1_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace Descargas_NET.Forms
         //}
 
         #region eventos_botones
-        private void btBackAll_Click(object sender, EventArgs e)
+        private void BtBackAll_Click(object sender, EventArgs e)
         {
             try
             {
@@ -257,7 +257,7 @@ namespace Descargas_NET.Forms
             catch { }//Me la pela si se produce un error de indice de row o cell
         }
 
-        private void btBack_Click(object sender, EventArgs e)
+        private void BtBack_Click(object sender, EventArgs e)
         {
             try
             {
@@ -274,14 +274,14 @@ namespace Descargas_NET.Forms
                     }
                     else
                     {
-                        btFowardAll_Click(sender, e);
+                        BtFowardAll_Click(sender, e);
                     }
                 }
             }
             catch { }//Me la pela si se produce un error de indice de row o cell
         }
 
-        private void btFoward_Click(object sender, EventArgs e)
+        private void BtFoward_Click(object sender, EventArgs e)
         {
             try
             {
@@ -299,14 +299,14 @@ namespace Descargas_NET.Forms
                     }
                     else
                     {
-                        btBackAll_Click(sender, e);
+                        BtBackAll_Click(sender, e);
                     }
                 }
             }
             catch { }//Me la pela si se produce un error de indice de row o cell
         }
 
-        private void btFowardAll_Click(object sender, EventArgs e)
+        private void BtFowardAll_Click(object sender, EventArgs e)
         {
             try
             {
@@ -321,7 +321,7 @@ namespace Descargas_NET.Forms
             catch { }//Me la pela si se produce un error de indice de row o cell
         }
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

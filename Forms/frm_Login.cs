@@ -17,7 +17,7 @@ namespace Descargas_NET.Forms
     {
         private readonly IRepositorio _repositorio;
         private const string _endPoint = "api/perfilesclientes";
-        private Log _log;
+        private readonly Log _log;
         public string Token { get; set; }
 
         public string Puesto { get; set; }
@@ -31,7 +31,7 @@ namespace Descargas_NET.Forms
             GlobalSettings.MSCommNet._comm_DataReceive += DatosRecibidosEscaner;
         }
 
-        private async void frm_Login_Load(object sender, EventArgs e)
+        private async void Frm_Login_Load(object sender, EventArgs e)
         {
             _log.EscribirEnFichero("Abriendo formulario de login");
 
@@ -70,7 +70,7 @@ namespace Descargas_NET.Forms
             }
         }
 
-        private async void btnAceptarSi_Click(object sender, EventArgs e)
+        private async void BtnAceptarSi_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrEmpty(lbUsuario.Text) & !string.IsNullOrEmpty(lbPuesto.Text))
             {
@@ -148,12 +148,12 @@ namespace Descargas_NET.Forms
             }
         }
 
-        private void frm_Login_FormClosing(object sender, FormClosingEventArgs e)
+        private void Frm_Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             GlobalSettings.MSCommNet._comm_DataReceive -= DatosRecibidosEscaner;
         }
 
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

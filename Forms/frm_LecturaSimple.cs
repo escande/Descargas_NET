@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace Descargas_NET.Forms
 {
-    public partial class frm_LecturaSimple : Form
+    public partial class Frm_LecturaSimple : Form
     {
-        public TrazabilidadMaterial material { get; set; }
+        public TrazabilidadMaterial Material { get; set; }
 
-        public frm_LecturaSimple()
+        public Frm_LecturaSimple()
         {
             InitializeComponent();
 
@@ -24,9 +24,9 @@ namespace Descargas_NET.Forms
         }
 
         
-        private void frm_LecturaSimple_Load(object sender, EventArgs e)
+        private void Frm_LecturaSimple_Load(object sender, EventArgs e)
         {
-            material = new TrazabilidadMaterial();
+            Material = new TrazabilidadMaterial();
             
             dgv.Rows.Add();
             dgv.Rows[0].Cells["campo"].Value = "Campo P";
@@ -51,24 +51,24 @@ namespace Descargas_NET.Forms
             dgv.Rows[0].Cells[1].Selected = true;
         }
 
-        private void btnAceptarSi_Click(object sender, EventArgs e)
+        private void BtnAceptarSi_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(material.TrazabilidadMaterialesPPartNumber) && !string.IsNullOrEmpty(material.TrazabilidadMaterialesNAlbaran)
-                                                                                    && !string.IsNullOrEmpty(material.TrazabilidadMaterialesSSerial)
-                                                                                    && material.TrazabilidadMaterialesQCantidad.Value > 0)
+            if (!string.IsNullOrEmpty(Material.TrazabilidadMaterialesPPartNumber) && !string.IsNullOrEmpty(Material.TrazabilidadMaterialesNAlbaran)
+                                                                                    && !string.IsNullOrEmpty(Material.TrazabilidadMaterialesSSerial)
+                                                                                    && Material.TrazabilidadMaterialesQCantidad.Value > 0)
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
-        private void btnCancelarNo_Click(object sender, EventArgs e)
+        private void BtnCancelarNo_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void frm_LecturaSimple_FormClosing(object sender, FormClosingEventArgs e)
+        private void Frm_LecturaSimple_FormClosing(object sender, FormClosingEventArgs e)
         {
             GlobalSettings.MSCommNet._comm_DataReceive -= DatosRecibidosEscaner;
         }
@@ -83,50 +83,50 @@ namespace Descargas_NET.Forms
                     {
                         case 'P':
                             var cadena = e.Lectura[1..];
-                            material.TrazabilidadMaterialesPPartNumber = Regex.Replace(cadena, @" ", "");
+                            Material.TrazabilidadMaterialesPPartNumber = Regex.Replace(cadena, @" ", "");
                             break;
 
                         case 'S':
                         case 'M':
                         case 'A':
-                            material.TrazabilidadMaterialesSSerial = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesSSerial = e.Lectura[1..];
                             break;
 
                         case 'Q':
-                            material.TrazabilidadMaterialesQCantidad = int.Parse(e.Lectura[1..]);
+                            Material.TrazabilidadMaterialesQCantidad = int.Parse(e.Lectura[1..]);
                             break;
 
                         case 'N':
-                            material.TrazabilidadMaterialesNAlbaran = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesNAlbaran = e.Lectura[1..];
                             break;
 
                         case 'H':
-                            material.TrazabilidadMaterialesHLote = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesHLote = e.Lectura[1..];
                             break;
 
                         case 'D':
-                            material.TrazabilidadMaterialesDFecha = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesDFecha = e.Lectura[1..];
                             break;
 
                         case 'V':
-                            material.TrazabilidadMaterialesVProveedor = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesVProveedor = e.Lectura[1..];
                             break;
 
                         case 'B':
-                            material.TrazabilidadMaterialesBEmbalaje = e.Lectura[1..];
+                            Material.TrazabilidadMaterialesBEmbalaje = e.Lectura[1..];
                             break;
 
                         case '3':
                         case '4':
                             if (e.Lectura[0..1] == "4")
                             {
-                                material.TrazabilidadMaterialesSSerial = e.Lectura[2..];
+                                Material.TrazabilidadMaterialesSSerial = e.Lectura[2..];
                             }
                             else if(e.Lectura[0..1] == "3")
                             {
                                 if (e.Lectura[0..2] != "30")
                                 {
-                                    material.TrazabilidadMaterialesSSerial = e.Lectura[2..];
+                                    Material.TrazabilidadMaterialesSSerial = e.Lectura[2..];
                                 }
                             }
 
@@ -147,20 +147,20 @@ namespace Descargas_NET.Forms
                 {
                     lbLectura.Text = lectura;
 
-                    dgv.Rows[0].Cells["lectura"].Value = material.TrazabilidadMaterialesPPartNumber;
-                    dgv.Rows[1].Cells["lectura"].Value = material.TrazabilidadMaterialesSSerial;
-                    dgv.Rows[2].Cells["lectura"].Value = material.TrazabilidadMaterialesQCantidad;
-                    dgv.Rows[3].Cells["lectura"].Value = material.TrazabilidadMaterialesNAlbaran;
-                    dgv.Rows[4].Cells["lectura"].Value = material.TrazabilidadMaterialesHLote;
-                    dgv.Rows[5].Cells["lectura"].Value = material.TrazabilidadMaterialesDFecha;
-                    dgv.Rows[6].Cells["lectura"].Value = material.TrazabilidadMaterialesVProveedor;
-                    dgv.Rows[7].Cells["lectura"].Value = material.TrazabilidadMaterialesBEmbalaje;
+                    dgv.Rows[0].Cells["lectura"].Value = Material.TrazabilidadMaterialesPPartNumber;
+                    dgv.Rows[1].Cells["lectura"].Value = Material.TrazabilidadMaterialesSSerial;
+                    dgv.Rows[2].Cells["lectura"].Value = Material.TrazabilidadMaterialesQCantidad;
+                    dgv.Rows[3].Cells["lectura"].Value = Material.TrazabilidadMaterialesNAlbaran;
+                    dgv.Rows[4].Cells["lectura"].Value = Material.TrazabilidadMaterialesHLote;
+                    dgv.Rows[5].Cells["lectura"].Value = Material.TrazabilidadMaterialesDFecha;
+                    dgv.Rows[6].Cells["lectura"].Value = Material.TrazabilidadMaterialesVProveedor;
+                    dgv.Rows[7].Cells["lectura"].Value = Material.TrazabilidadMaterialesBEmbalaje;
                 }));
             }
             catch { }
         }
 
-        private void tbManual_KeyPress(object sender, KeyPressEventArgs e)
+        private void TbManual_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
             {

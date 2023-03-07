@@ -1,7 +1,7 @@
 ﻿
 namespace Descargas_NET.Forms
 {
-    partial class frm_Incidencias
+    partial class Frm_Incidencias
     {
         /// <summary>
         /// Required designer variable.
@@ -65,7 +65,7 @@ namespace Descargas_NET.Forms
             this.btExit.Size = new System.Drawing.Size(61, 52);
             this.btExit.TabIndex = 32;
             this.btExit.UseVisualStyleBackColor = false;
-            this.btExit.Click += new System.EventHandler(this.btExit_Click);
+            this.btExit.Click += new System.EventHandler(this.BtExit_Click);
             // 
             // label1
             // 
@@ -153,7 +153,7 @@ namespace Descargas_NET.Forms
             this.btAceptar.TabIndex = 53;
             this.btAceptar.Text = "ACEPTAR";
             this.btAceptar.UseVisualStyleBackColor = false;
-            this.btAceptar.Click += new System.EventHandler(this.btAceptar_Click);
+            this.btAceptar.Click += new System.EventHandler(this.BtAceptar_Click);
             // 
             // btFowardAll
             // 
@@ -275,7 +275,7 @@ namespace Descargas_NET.Forms
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "frm_Incidencias";
-            this.Load += new System.EventHandler(this.frm_Incidencias_Load);
+            this.Load += new System.EventHandler(this.Frm_Incidencias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 

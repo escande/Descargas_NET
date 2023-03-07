@@ -169,7 +169,7 @@ namespace Descargas_NET.Helpers
             {
                 int cQR = _lectura.IndexOf((char)43);//43
                 int cPDF = _lectura.IndexOf((char)29);
-                bool cPDFcab = _lectura.Substring(0, 3).Contains("[)>");
+                bool cPDFcab = _lectura[..3].Contains("[)>");
 
                 //Otra ñapa más para solventar de momento los PDF's raros
                 bool cPDFRaro = ComprobarPDFRaro(_lectura);
@@ -253,7 +253,7 @@ namespace Descargas_NET.Helpers
 
             foreach (var z in lectura)
             {
-                switch (z.Substring(0, 1))
+                switch (z[..1])
                 {
                     case "A":
                         lOdette.Campo_S = z[1..];

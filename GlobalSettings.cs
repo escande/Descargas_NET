@@ -24,10 +24,18 @@ namespace Descargas_NET
 
         public static frm_Login formLogin;
 
+        public static FrmPrincDescargas formPrincDescargas;
+
+        public static frm_PrincReposiciones formPrincReposiciones;
+
+        public static FrmReposiciones formReposiciones;
+
         public static MSCommNet MSCommNet;
 
         public static string UsuarioApp = "EL PROBADOR .NET";
 
-        public static int VersionSoftware = 4;
+        public static string Confirmacion = "CONFIRMACION";
+
+        public static int VersionSoftware = 5;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Descargas_NET.Helpers;
-using Descargas_NET.Helpers;
 using Descargas_NET.Models;
 using Descargas_NET.Services;
 using Descargas_NET.Services.Hub;
@@ -23,19 +22,17 @@ namespace Descargas_NET.Forms
         private readonly IRepositorio _repositorio;
         private readonly IWaitFunction _wait;
         private readonly IHubClient hub;
-        //private readonly IMemoData _salvarLecturasEnFichero;
-        private List<TrazabilidadMaterial> _materiales;
+        private readonly List<TrazabilidadMaterial> _materiales;
         private frm_DescargaResumen formDescargaResumen;
-        private frm_Incidencias _formIncidencias;
-        private ContextMenuStrip _menu;
-        private ToolStripMenuItem _itemBorrar;
-        //private ToolStripMenuItem _incidencia;
-        private Log _log;
+        private Frm_Incidencias _formIncidencias;
+        private readonly ContextMenuStrip _menu;
+        private readonly ToolStripMenuItem _itemBorrar;
+        private readonly Log _log;
         int _repetidos = 0;
         int _counter = 0;
         private bool _anotando = false;
         private bool _enArranque = true;
-        List<string> _avisosSap;
+        readonly List<string> _avisosSap;
 
         //BUILDER -----------------------------------------------
         public frm_Descarga(frm_ListDescargas parent, Descarga descarga)
@@ -47,8 +44,6 @@ namespace Descargas_NET.Forms
             this._repositorio = Injector.GetService<IRepositorio>();
             this.hub = Injector.GetService<IHubClient>();
             hub.Hub_DataReceive += Connection_DataReceive;
-            //this._salvarLecturasEnFichero = Injector.GetService<IMemoData>();
-            //_salvarLecturasEnFichero.NombreFichero = $"Descarga_{_descarga.DescargaId}";
             _wait =  Injector.GetService<IWaitFunction>();
             _materiales = new List<TrazabilidadMaterial>();
             _avisosSap = new();
@@ -62,14 +57,8 @@ namespace Descargas_NET.Forms
             };
             _itemBorrar.Click += MuestraBorrarItem_Click;
 
-            //_incidencia = new ToolStripMenuItem();
-            //_incidencia.Name = "_incidencia";
-            //_incidencia.Text = "INCIDENCIA";
-            //_incidencia.Click += Muestraincidencia_Click;
-
             _menu = new ContextMenuStrip();
             _menu.Items.Add(_itemBorrar);
-            //_menu.Items.Add(_incidencia);
         }
 
         //LOAD ---------------------------------------------------
@@ -79,7 +68,6 @@ namespace Descargas_NET.Forms
             this.Left = -5;
             RellenarLabels();
             await ComprobarLecturasGuardadas();
-            //RenellarDatosMock();
         }
 
         private async Task ComprobarLecturasGuardadas()
@@ -135,19 +123,11 @@ namespace Descargas_NET.Forms
 
                             if (item.AvisoCDMId > 0)
                             {
-                                //for (int i = 0; i < dgv.Rows[_counter].Cells.Count; i++)
-                                //{
-                                //    dgv.Rows[_counter].Cells[i].Style.BackColor = Color.Orange;
-                                //}
                                 dgv.Rows[_counter].Cells["Alerta0"].Style.BackColor = Color.Yellow;
                             }
 
                             if (item.AvisoCarretilleroCDMId > 0)
                             {
-                                //for (int i = 0; i < dgv.Rows[_counter].Cells.Count; i++)
-                                //{
-                                //    dgv.Rows[_counter].Cells[i].Style.BackColor = Color.Orange;
-                                //}
                                 dgv.Rows[_counter].Cells["Mensaje"].Style.BackColor = Color.Orange;
                             }
 
@@ -173,21 +153,6 @@ namespace Descargas_NET.Forms
 
         private void BtExit_Click(object sender, EventArgs e)
         {
-            //if(_materiales.Count > 0)
-            //{
-            //    var dialog = Aviso.Msg("¿Deseas guardar las lecturas de los materiales para usarlos Posteriormente?", true);
-
-            //    if(dialog == DialogResult.OK)
-            //    {
-            //        var cadena = JsonConvert.SerializeObject(_materiales);
-            //        _salvarLecturasEnFichero.EscribirEnFichero(cadena);
-            //    }
-            //    else
-            //    {
-            //        _salvarLecturasEnFichero.EliminarFichero();
-            //    }
-            //}
-
             this.Close();
             _parent.Show();
         }
@@ -292,6 +257,23 @@ namespace Descargas_NET.Forms
 
                                 _materiales.Add(material);
 
+                                if (material.AvisoCDMId > 0)
+                                {
+                                    Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
+                                                                   + "Alerta0 cerrada: Colocar identificación y enviar a ubicación final", false);
+                                }
+
+                                if (material.AvisoCarretilleroCDMId > 0)
+                                {
+                                    var existeAviso = _avisosSap.Any(x => x == sap.ToString());
+
+                                    if (!existeAviso)
+                                    {
+                                        Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
+                                                                                                          + $"{avisoConductor.Item2}", false);
+                                    }
+                                }
+
                                 dgv.BeginInvoke(new Action(() =>
                                  {
                                      dgv.Rows.Add();
@@ -319,13 +301,9 @@ namespace Descargas_NET.Forms
 
                                      if (material.AvisoCDMId > 0)
                                      {
-                                         //for (int i = 0; i < dgv.Rows[_counter].Cells.Count; i++)
-                                         //{
-                                         //    dgv.Rows[_counter].Cells[i].Style.BackColor = Color.Orange;
-                                         //}
                                          dgv.Rows[_counter].Cells["Alerta0"].Style.BackColor = Color.Yellow;
-                                         Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
-                                                                        + "Alerta0 cerrada: Colocar identificación y enviar a ubicación final", false);
+                                         //Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
+                                         //                               + "Alerta0 cerrada: Colocar identificación y enviar a ubicación final", false);
                                      }
 
                                      if (material.AvisoCarretilleroCDMId > 0)
@@ -335,8 +313,8 @@ namespace Descargas_NET.Forms
                                          if (!existeAviso)
                                          {
                                              dgv.Rows[_counter].Cells["Mensaje"].Style.BackColor = Color.Orange;
-                                             Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
-                                                                                                               + $"{ avisoConductor.Item2}", false);
+                                             //Aviso.Msg($"SAP:{material.TrazabilidadMaterialesReferenciaSap}\nPN: {material.TrazabilidadMaterialesPPartNumber}\n\n"
+                                             //                                                                  + $"{ avisoConductor.Item2}", false);
                                              _avisosSap.Add(sap.ToString());
                                          }
                                      }
@@ -358,16 +336,18 @@ namespace Descargas_NET.Forms
                             Aviso.Msg($"Se produjo un error obteniendo el SAP para el PN: {partNumber}", false);
                         }
                     }
+
+                    _anotando = false;
                 }
             }
             catch (Exception ex)
             {
                 _log.EscribirEnFichero($"ERROR en DatosRecibidosEscaner: {ex.Message}");
             }
-            finally
-            {
-                _anotando = false;
-            }
+            //finally
+            //{
+            //    _anotando = false;
+            //}
         }
 
         private async Task<(int, string)> GestionarAlerta0(int sap)
@@ -418,7 +398,7 @@ namespace Descargas_NET.Forms
             }
             catch (Exception ex)
             {
-                _log.EscribirEnFichero($"Se ha producido un error en GestionarAlerta0 para el SAP: {sap}");
+                _log.EscribirEnFichero($"Se ha producido un error en GestionarAlerta0 para el SAP: {sap}, {ex.Message}");
                 Aviso.Msg($"Se ha producido un error en GestionarAlerta0 para el SAP: {sap}", false);
 
                 return (-1, "");
@@ -465,14 +445,14 @@ namespace Descargas_NET.Forms
             }
             catch (Exception ex)
             {
-                _log.EscribirEnFichero($"Se ha producido un error en GestionarAvisosCarretillero para el SAP: {sap}");
+                _log.EscribirEnFichero($"Se ha producido un error en GestionarAvisosCarretillero para el SAP: {sap}, {ex.Message}");
                 Aviso.Msg($"Se ha producido un error en GestionarAvisosCarretillero para el SAP: {sap}", false);
 
                 return (-1, "");
             }
         }
 
-        private bool IsNumeric(object Expression)
+        private static bool IsNumeric(object Expression)
         {
             bool isNum;
             double retNum;
@@ -661,7 +641,7 @@ namespace Descargas_NET.Forms
         {
             try
             {
-                _formIncidencias = new frm_Incidencias(this, _descarga.DescargaId);
+                _formIncidencias = new Frm_Incidencias(this, _descarga.DescargaId);
                 _formIncidencias.Show();
 
                 this.Hide();
@@ -841,13 +821,13 @@ namespace Descargas_NET.Forms
         {
             GlobalSettings.MSCommNet._comm_DataReceive -= DatosRecibidosEscaner;
 
-            var frmSimple = new frm_LecturaSimple();
+            var frmSimple = new Frm_LecturaSimple();
 
             var dialog = frmSimple.ShowDialog();
 
             if (dialog == DialogResult.OK)
             {
-                var material = frmSimple.material;
+                var material = frmSimple.Material;
 
                 if (!string.IsNullOrEmpty(material.TrazabilidadMaterialesPPartNumber) && !string.IsNullOrEmpty(material.TrazabilidadMaterialesNAlbaran)
                                                                                     && !string.IsNullOrEmpty(material.TrazabilidadMaterialesSSerial)
@@ -965,7 +945,7 @@ namespace Descargas_NET.Forms
             }));
         }
 
-        private void frm_Descarga_VisibleChanged(object sender, EventArgs e)
+        private void Frm_Descarga_VisibleChanged(object sender, EventArgs e)
         {
             if (!_enArranque && this.Visible)
             {

@@ -37,7 +37,7 @@ namespace Descargas_NET
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Principal(Injector.GetService<IRepositorio>()));
+            Application.Run(new Frm_Principal(Injector.GetService<IRepositorio>()));
         }
     }
 }

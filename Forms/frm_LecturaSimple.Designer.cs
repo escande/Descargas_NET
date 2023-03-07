@@ -1,7 +1,7 @@
 ﻿
 namespace Descargas_NET.Forms
 {
-    partial class frm_LecturaSimple
+    partial class Frm_LecturaSimple
     {
         /// <summary>
         /// Required designer variable.
@@ -65,7 +65,7 @@ namespace Descargas_NET.Forms
             this.btnAceptarSi.Text = "Aceptar";
             this.btnAceptarSi.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAceptarSi.UseVisualStyleBackColor = false;
-            this.btnAceptarSi.Click += new System.EventHandler(this.btnAceptarSi_Click);
+            this.btnAceptarSi.Click += new System.EventHandler(this.BtnAceptarSi_Click);
             // 
             // btnCancelarNo
             // 
@@ -89,7 +89,7 @@ namespace Descargas_NET.Forms
             this.btnCancelarNo.Text = "Cancelar";
             this.btnCancelarNo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancelarNo.UseVisualStyleBackColor = false;
-            this.btnCancelarNo.Click += new System.EventHandler(this.btnCancelarNo_Click);
+            this.btnCancelarNo.Click += new System.EventHandler(this.BtnCancelarNo_Click);
             // 
             // dgv
             // 
@@ -178,7 +178,7 @@ namespace Descargas_NET.Forms
             this.tbManual.Size = new System.Drawing.Size(262, 29);
             this.tbManual.TabIndex = 50;
             this.tbManual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbManual_KeyPress);
+            this.tbManual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbManual_KeyPress);
             // 
             // label2
             // 
@@ -206,8 +206,8 @@ namespace Descargas_NET.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frm_LecturaSimple";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_LecturaSimple_FormClosing);
-            this.Load += new System.EventHandler(this.frm_LecturaSimple_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_LecturaSimple_FormClosing);
+            this.Load += new System.EventHandler(this.Frm_LecturaSimple_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

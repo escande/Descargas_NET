@@ -259,7 +259,7 @@ namespace Descargas_NET.Forms
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv.Size = new System.Drawing.Size(780, 298);
             this.dgv.TabIndex = 13;
-            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_CellClick);
             // 
             // ID
             // 
@@ -332,7 +332,7 @@ namespace Descargas_NET.Forms
             this.btBackAll.Size = new System.Drawing.Size(121, 71);
             this.btBackAll.TabIndex = 20;
             this.btBackAll.UseVisualStyleBackColor = false;
-            this.btBackAll.Click += new System.EventHandler(this.btBackAll_Click);
+            this.btBackAll.Click += new System.EventHandler(this.BtBackAll_Click);
             // 
             // btBack
             // 
@@ -349,7 +349,7 @@ namespace Descargas_NET.Forms
             this.btBack.Size = new System.Drawing.Size(121, 71);
             this.btBack.TabIndex = 21;
             this.btBack.UseVisualStyleBackColor = false;
-            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            this.btBack.Click += new System.EventHandler(this.BtBack_Click);
             // 
             // btFoward
             // 
@@ -366,7 +366,7 @@ namespace Descargas_NET.Forms
             this.btFoward.Size = new System.Drawing.Size(121, 71);
             this.btFoward.TabIndex = 22;
             this.btFoward.UseVisualStyleBackColor = false;
-            this.btFoward.Click += new System.EventHandler(this.btFoward_Click);
+            this.btFoward.Click += new System.EventHandler(this.BtFoward_Click);
             // 
             // btFowardAll
             // 
@@ -383,7 +383,7 @@ namespace Descargas_NET.Forms
             this.btFowardAll.Size = new System.Drawing.Size(121, 71);
             this.btFowardAll.TabIndex = 23;
             this.btFowardAll.UseVisualStyleBackColor = false;
-            this.btFowardAll.Click += new System.EventHandler(this.btFowardAll_Click);
+            this.btFowardAll.Click += new System.EventHandler(this.BtFowardAll_Click);
             // 
             // btDescargar
             // 
@@ -405,7 +405,7 @@ namespace Descargas_NET.Forms
             this.btDescargar.TabIndex = 24;
             this.btDescargar.Text = "DESCARGAR";
             this.btDescargar.UseVisualStyleBackColor = false;
-            this.btDescargar.Click += new System.EventHandler(this.btDescargar_Click);
+            this.btDescargar.Click += new System.EventHandler(this.BtDescargar_Click);
             // 
             // btExit
             // 
@@ -425,11 +425,11 @@ namespace Descargas_NET.Forms
             this.btExit.Size = new System.Drawing.Size(61, 52);
             this.btExit.TabIndex = 25;
             this.btExit.UseVisualStyleBackColor = false;
-            this.btExit.Click += new System.EventHandler(this.btExit_Click);
+            this.btExit.Click += new System.EventHandler(this.BtExit_Click);
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // frm_ListDescargas
             // 
@@ -460,8 +460,8 @@ namespace Descargas_NET.Forms
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "frm_ListDescargas";
-            this.Load += new System.EventHandler(this.frm_ListDescargas_Load);
-            this.VisibleChanged += new System.EventHandler(this.frm_ListDescargas_VisibleChanged);
+            this.Load += new System.EventHandler(this.Frm_ListDescargas_Load);
+            this.VisibleChanged += new System.EventHandler(this.Frm_ListDescargas_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 

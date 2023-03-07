@@ -20,6 +20,7 @@ namespace Descargas_NET.Services.Hub
 
         public EstadoConexion Conexion { get; set; }
         public List<string> Usuarios { get; set; }
+        private readonly Log _log;
 
         //Eventos
         public event EventHandler<bool> Hub_ConexionChange;
@@ -39,7 +40,7 @@ namespace Descargas_NET.Services.Hub
             //                    ))).ToString());
             //})
             //.Build();
-
+            _log = new Log("Hub");
             Usuarios = new();
         }
 
@@ -75,7 +76,7 @@ namespace Descargas_NET.Services.Hub
             }
             catch (Exception ex)
             {
-
+                _log.EscribirEnFichero($"Error Conectar: {ex.Message}");
             }
         }
 
@@ -91,7 +92,7 @@ namespace Descargas_NET.Services.Hub
             }
             catch (Exception ex)
             {
-
+                _log.EscribirEnFichero($"Error Desconectar: {ex.Message}");
             }
         }
 
@@ -153,7 +154,7 @@ namespace Descargas_NET.Services.Hub
             }
             catch (Exception ex)
             {
-                //writeToLog($"Error actualizando usuario {ex.Message}");
+                _log.EscribirEnFichero($"Error actualizando usuario {ex.Message}");
             }
         }
 

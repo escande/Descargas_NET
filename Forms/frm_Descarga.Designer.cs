@@ -536,7 +536,7 @@ namespace Descargas_NET.Forms
             this.Name = "frm_Descarga";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Descarga_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Descarga_Load);
-            this.VisibleChanged += new System.EventHandler(this.frm_Descarga_VisibleChanged);
+            this.VisibleChanged += new System.EventHandler(this.Frm_Descarga_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
